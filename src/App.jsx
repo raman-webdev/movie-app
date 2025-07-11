@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Search from "./components/Search";
 import Spinner from "./components/Spinner";
 import MovieCard from "./components/MovieCard";
+import Switch from '@mui/material/Switch';
 import { useDebounce } from "use-debounce";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
@@ -19,9 +20,8 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [debouncedValue] = useDebounce(searchTerm, 500);     
-
-  useEffect;
+  const [isToggled, setIsToggled] = useState(false); 
+  const [debouncedValue] = useDebounce(searchTerm, 500);
 
   const fetchMovies = async (query = "") => {
     setIsLoading(true);
@@ -54,6 +54,13 @@ const App = () => {
     }
   };
 
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+    console.log("toggled");
+  }
+
   useEffect(() => {
     fetchMovies(debouncedValue);
   }, [debouncedValue]); // Empty dependency array = runs once on mount
@@ -61,10 +68,16 @@ const App = () => {
   return (
     <main>
       <div className="pattern" />
+      <div className="mx-[650px] mt-5"
+      style={{
+        
+      }}
+      onClick={handleToggle}
+      >
+       <Switch {...label} defaultChecked />  
+      </div>
 
       <div className="wrapper">
-        {" "}
-        x
         <header>
           <img src="./hero-img.png" alt="Hero Banner" />
           <h1>
