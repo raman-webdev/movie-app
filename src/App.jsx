@@ -66,7 +66,7 @@ const App = () => {
   }, [debouncedValue]); // Empty dependency array = runs once on mount
 
   return (
-    <main>
+    <main className="transition-all">
       <div className="pattern" />
       <div className="mx-[650px] mt-5"
       style={{
